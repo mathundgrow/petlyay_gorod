@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:pocketbase/pocketbase.dart';
 import 'package:walk_city/features/auth/presentation/screens/login_screen.dart';
 import 'package:walk_city/features/home/presentation/screens/home_screen.dart';
 import 'package:walk_city/features/tasks/presentation/tasks_screen.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+import 'core/network/pb_client.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized;
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
-    );
+// Инициализируем клиента
+  final PocketBase pb = PbClient.instance;
+
+  try {
+    // Делаем простую проверку здоровья сервера
+    final result = await pb.health.check();
+    print("Сервер ответил: ${result.code}");
+  } catch (e) {
+    print("Ошибка подключения: $e");
   }
-}
+  }

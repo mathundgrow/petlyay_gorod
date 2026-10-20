@@ -2,7 +2,7 @@ import 'package:walk_city/core/network/pb_client.dart';
 import 'package:walk_city/features/auth/data/models/user_model.dart';
 
 class AuthRepository {
-  // единственный жк
+  // единственный путь к серваку
   final _pb = PbClient.instance;
 
   // Метод регистрации
@@ -32,4 +32,5 @@ class AuthRepository {
     
     return UserModel.fromJson(authData.record.data);
   }
+  
 }

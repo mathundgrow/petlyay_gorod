@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 class PasswordTextField extends StatefulWidget {
   final String hint;
   final IconData prefixIcon; // Иконка слева (замочек)
+  
+  final TextEditingController? controller;
 
   const PasswordTextField({
     super.key,
     required this.hint,
-    required this.prefixIcon,
+    required this.prefixIcon, 
+    this.controller,
   });
 
   @override
@@ -29,6 +32,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
     );
 
     return TextFormField(
+      controller: widget.controller,
       obscureText: _isObscure,
       decoration: InputDecoration(
         filled: true,

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:walk_city/core/network/pb_client.dart';
-import 'package:walk_city/features/tasks/presentation/tasks_screen.dart';
+import 'package:walk_city/features/auth/data/repositories/auth_repository.dart';
+import 'package:walk_city/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:walk_city/features/auth/presentation/screens/register_screen.dart';
+import 'package:walk_city/features/home/presentation/screens/home_screen.dart';
 
 void main() async {
+  // перед началом инициализируй подключение к серверу
   WidgetsFlutterBinding.ensureInitialized();
 
   final PocketBase pb = PbClient.instance;
@@ -15,7 +20,12 @@ void main() async {
     debugPrint("Ошибка подключения: $e");
   }
 
-  runApp(const MyApp());
+  runApp(
+    BlocProvider(
+      create: (context) => AuthBloc(AuthRepository()),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -25,7 +35,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const TasksScreen(),
+      home: const RegisterScreen(),
     );
   }
 }

@@ -76,10 +76,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // ==========================================
-  // КОМПОНЕНТЫ
-  // ==========================================
-
   Widget _buildCustomAppBar() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

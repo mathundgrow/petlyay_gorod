@@ -1,6 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:walk_city/core/widgets/App_button.dart';
+import 'package:walk_city/core/widgets/app_button.dart';
 
 class AvatarScreen extends StatelessWidget {
   const AvatarScreen({super.key});

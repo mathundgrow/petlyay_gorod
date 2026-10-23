@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart'; // Обязательно импортируй это!
 import 'package:flutter/material.dart';
-import 'package:walk_city/core/widgets/App_button.dart';
+import 'package:walk_city/core/widgets/app_button.dart';
 import 'package:walk_city/core/widgets/custom_text_field.dart';
 import 'package:walk_city/core/widgets/password_text_field.dart';
 import 'package:walk_city/features/auth/presentation/screens/register_screen.dart';

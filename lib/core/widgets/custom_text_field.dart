@@ -5,7 +5,6 @@ class CustomTextField extends StatelessWidget {
   final IconData icon;
   final bool isPassword;
   final IconData? suffixIcon;
-
   
   final TextEditingController? controller; // берет данные из input
 

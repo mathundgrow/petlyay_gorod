@@ -8,7 +8,6 @@ abstract class AuthEvent extends Equatable {
   List<Object> get props => [];
 }
 
-
 // 1. Событие: Пользователь хочет войти
 class LoginEvent extends AuthEvent {
   final String email;

@@ -29,7 +29,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _passwordController = TextEditingController();
   final _passwordConfirmController = TextEditingController();
 
-  // Убиваем их, когда уходим с экрана (как делали с PageController)
+  // Убиваем контроллеры, когда уходим с экрана (как делали с PageController)
   @override
   void dispose() {
     _nameController.dispose();
@@ -45,10 +45,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       backgroundColor: Colors.white,
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
-
           // Слушаем: Если Блок крикнул "УСПЕХ"
           if (state is AuthSuccess) {
-            
             // ВОТ ТЕПЕРЬ ПЕРЕХОДИМ!
             Navigator.push(
               context,
@@ -66,7 +64,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
             );
           }
         },
-
 
         // старый код продолжается тут
         child: Stack(
@@ -113,6 +110,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       icon: Icons.email_outlined,
                       controller: _emailController,
                     ),
+
                     const SizedBox(height: 22),
 
                     // На экране логина:
@@ -141,7 +139,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onChanged: (newValue) =>
                               setState(() => _isChecked = newValue),
                         ),
+                        
                         const SizedBox(width: 12),
+
                         const Expanded(
                           child: Text(
                             "Я принимаю условия пользовательского соглашения",
@@ -155,33 +155,70 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                     AppButton(
                       height: 60,
-                      text: "ДАЛЕЕ",
+                      text: "ЗАРЕГИСТРИРОВАТЬСЯ",
                       onTap: () {
+                        // чекаем галочку
                         if (!_isChecked) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text("Примите условия!")),
-                          );
-                          return;
-                        }
-
-                        // Добавлены простые проверки, чтобы не слать пустые данные на сервер
-                        if (_nameController.text.isEmpty ||
-                            _emailController.text.isEmpty ||
-                            _passwordController.text.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text("Заполните все поля!"),
+                              content: Text(
+                                "Сначала примите условия соглашения!",
+                              ),
                             ),
                           );
                           return;
                         }
 
-                        // КНОПКА ТОЛЬКО ОТПРАВЛЯЕТ СОБЫТИЕ. И ВСЁ.
+                        // * Достаем текст из контроллеров в переменные, чтобы было удобно читать
+                        final name = _nameController.text
+                            .trim(); // удаляет лишние пробелы в начале и конце
+                        final email = _emailController.text.trim();
+                        final password = _passwordController.text.trim();
+                        final confirmPassword = _passwordConfirmController.text
+                            .trim();
+
+                        // 2 Проверяем на пустоту
+                        if (name.isEmpty ||
+                            email.isEmpty ||
+                            password.isEmpty ||
+                            confirmPassword.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Пожалуйста, заполните все поля!"),
+                            ),
+                          );
+                          return;
+                        }
+
+                        // 3 Проверяем совпадение паролей
+                        if (password != confirmPassword) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Пароли не совпадают!"),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                          return;
+                        }
+
+                        // 4 Проверка на длину пароля (PocketBase требует минимум 8 символов)
+                        if (password.length < 8) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                "Пароль должен быть не менее 8 символов!",
+                              ),
+                            ),
+                          );
+                          return;
+                        }
+
+                        // ПРОШЛИ ВСЕ ПРОВЕРКИ - КИДАЕМ КОНВЕРТ В BLOC!
                         context.read<AuthBloc>().add(
                           RegisterEvent(
-                            name: _nameController.text,
-                            email: _emailController.text,
-                            password: _passwordController.text,
+                            name: name,
+                            email: email,
+                            password: password,
                           ),
                         );
                       },

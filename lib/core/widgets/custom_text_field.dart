@@ -6,6 +6,7 @@ class CustomTextField extends StatelessWidget {
   final bool isPassword;
   final IconData? suffixIcon;
 
+  
   final TextEditingController? controller; // берет данные из input
 
   const CustomTextField({

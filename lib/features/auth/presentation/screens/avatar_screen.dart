@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:walk_city/core/widgets/app_button.dart';
+import 'package:walk_city/features/home/presentation/screens/home_screen.dart';
 
 class AvatarScreen extends StatelessWidget {
   const AvatarScreen({super.key});
@@ -146,8 +147,15 @@ class AvatarScreen extends StatelessWidget {
                     text: "СОХРАНИТЬ",
                     onTap: () {
                       print("Сохраняем аватар!");
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                      );
                     },
                   ),
+                  
                   const SizedBox(height: 20),
                   // ...
                 ],

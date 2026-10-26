@@ -4,8 +4,8 @@ import 'package:pocketbase/pocketbase.dart';
 import 'package:walk_city/core/network/pb_client.dart';
 import 'package:walk_city/features/auth/data/repositories/auth_repository.dart';
 import 'package:walk_city/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:walk_city/features/auth/presentation/screens/register_screen.dart';
-import 'package:walk_city/features/home/presentation/screens/home_screen.dart';
+import 'package:walk_city/features/auth/presentation/screens/avatar_screen.dart';
+import 'package:walk_city/features/auth/presentation/screens/login_screen.dart';
 
 void main() async {
   // перед началом инициализируй подключение к серверу
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const RegisterScreen(),
+      home: const AvatarScreen(),
     );
   }
 }

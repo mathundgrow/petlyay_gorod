@@ -110,4 +110,5 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     _pageController.dispose(); //удаляем контроллер который уже не используется
     super.dispose();
   }
+  
 }

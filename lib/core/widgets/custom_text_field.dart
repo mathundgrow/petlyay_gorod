@@ -5,6 +5,8 @@ class CustomTextField extends StatelessWidget {
   final IconData icon;
   final bool isPassword;
   final IconData? suffixIcon;
+  
+  final TextEditingController? controller; // берет данные из input
 
   const CustomTextField({
     super.key,
@@ -12,6 +14,7 @@ class CustomTextField extends StatelessWidget {
     required this.icon,
     this.isPassword = false,
     this.suffixIcon,
+    this.controller,
   });
 
   @override
@@ -26,6 +29,7 @@ class CustomTextField extends StatelessWidget {
     );
 
     return TextFormField(
+      controller: controller,
       obscureText: isPassword,
       decoration: InputDecoration(
         filled: true,
@@ -34,12 +38,8 @@ class CustomTextField extends StatelessWidget {
         // Добавляем вот эту строчку:
         hintStyle: const TextStyle(color: Colors.grey),
 
-        prefixIcon: Icon(
-          icon,
-          color: Colors.grey,
-        ),
+        prefixIcon: Icon(icon, color: Colors.grey),
         contentPadding: const EdgeInsets.symmetric(vertical: 18),
-
 
         suffixIcon: suffixIcon != null
             ? Icon(suffixIcon, color: Colors.grey)

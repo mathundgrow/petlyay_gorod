@@ -78,7 +78,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
                 
                 SizedBox(height: 20),
-
+                
                 OnboardingButton(
                   text: _currentPage == _pages.length - 1 ? "Начать" : "Далее",
                   onTap: () {

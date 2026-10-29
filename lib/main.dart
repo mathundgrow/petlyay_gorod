@@ -19,6 +19,7 @@ void main() async {
   // ТИХОЕ ОБНОВЛЕНИЕ ТОКЕНА
   if (pb.authStore.isValid) {
     try {
+      
       // Пытаемся обновить токен в фоне
       await pb.collection('users').authRefresh();
       debugPrint("Токен успешно обновлен в фоне!");
@@ -52,6 +53,8 @@ void main() async {
   } catch (e) {
     debugPrint("Ошибка подключения: $e");
   }
+
+  PbClient.instance.authStore.clear();
 
   runApp(
     BlocProvider(

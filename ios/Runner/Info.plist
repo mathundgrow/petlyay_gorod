@@ -66,5 +66,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>Нам нужен доступ к галерее, чтобы вы могли выбрать аватарку для профиля.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Нам нужен доступ к камере, чтобы вы могли сделать фото для профиля.</string>
+
 </dict>
 </plist>

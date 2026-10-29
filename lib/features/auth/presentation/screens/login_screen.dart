@@ -7,6 +7,7 @@ import 'package:walk_city/core/widgets/password_text_field.dart';
 import 'package:walk_city/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:walk_city/features/auth/presentation/bloc/auth_event.dart';
 import 'package:walk_city/features/auth/presentation/bloc/auth_state.dart';
+import 'package:walk_city/features/auth/presentation/screens/register_screen.dart';
 import 'package:walk_city/features/auth/presentation/widgets/auth_title.dart';
 import 'package:walk_city/features/auth/presentation/widgets/buttons/social_buttons_row.dart';
 import 'package:walk_city/features/auth/presentation/widgets/or_divider.dart';
@@ -134,7 +135,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           // SizedBox(height: 10),
                           BlocBuilder<AuthBloc, AuthState>(
                             builder: (context, state) {
-                              
                               // ! позже переделать (возможно)
                               if (state is AuthLoading) {
                                 // Показываем крутилку
@@ -213,11 +213,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                     color: Colors.pink,
                                     fontWeight: FontWeight.bold,
                                   ),
-                                  // Добавляем магию клика:
+
+                                  // Добавляем распознавание нажатия на текст:
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      print("Переход на экран регистрации!");
-                                      // Тут будет переход: Navigator.push(...)
+                                      Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const RegisterScreen(),
+                                        ),
+                                        (route) =>
+                                            false, // Очищаем историю, чтобы нельзя было вернуться назад
+                                      );
+                                      debugPrint("Переход на экран регистрации!");
                                     },
                                 ),
                               ],

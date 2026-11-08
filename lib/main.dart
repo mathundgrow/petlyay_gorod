@@ -6,6 +6,8 @@ import 'package:walk_city/features/auth/data/repositories/auth_repository.dart';
 import 'package:walk_city/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:walk_city/features/auth/presentation/screens/login_screen.dart';
 import 'package:walk_city/features/home/presentation/screens/home_screen.dart';
+import 'package:walk_city/features/onboarding/presentation/screens/onboarding_screen.dart';
+import 'package:walk_city/features/onboarding/presentation/screens/on_boarding_screen2.dart';
 
 void main() async {
   // перед началом инициализируй подключение к серверу
@@ -73,7 +75,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: PbClient.instance.authStore.isValid
           ? const HomeScreen() // Если токен жив - на Главную
-          : const LoginScreen(), // Иначе - логинимся
+          : OnBoardingScreen() // Иначе - логинимся
     );
   }
 }

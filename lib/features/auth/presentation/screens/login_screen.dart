@@ -8,6 +8,10 @@ import 'package:walk_city/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:walk_city/features/auth/presentation/bloc/auth_event.dart';
 import 'package:walk_city/features/auth/presentation/bloc/auth_state.dart';
 import 'package:walk_city/features/auth/presentation/screens/register_screen.dart';
+<<<<<<< Updated upstream
+=======
+import 'package:walk_city/features/auth/presentation/widgets/alert_dialog.dart';
+>>>>>>> Stashed changes
 import 'package:walk_city/features/auth/presentation/widgets/auth_title.dart';
 import 'package:walk_city/features/auth/presentation/widgets/buttons/social_buttons_row.dart';
 import 'package:walk_city/features/auth/presentation/widgets/or_divider.dart';
@@ -159,13 +163,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                   // Проверяем на пустоту поля
                                   if (email.isEmpty || password.isEmpty) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text(
-                                          "Пожалуйста, заполните все поля!",
-                                        ),
-                                      ),
-                                    );
+                                    showPinkAlert(
+                                      context, 
+                                      message: 'Неправильно указан логин или пароль');
                                     return;
                                   }
 
@@ -217,6 +217,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   // Добавляем распознавание нажатия на текст:
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
+<<<<<<< Updated upstream
                                       Navigator.pushAndRemoveUntil(
                                         context,
                                         MaterialPageRoute(
@@ -227,6 +228,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                             false, // Очищаем историю, чтобы нельзя было вернуться назад
                                       );
                                       debugPrint("Переход на экран регистрации!");
+=======
+                                      print("Переход на экран регистрации!");
+                                      Navigator.push(
+                                        context, 
+                                        MaterialPageRoute(
+                                          builder: ((context) => const RegisterScreen())));
+                                      // Тут будет переход: Navigator.push(...)
+>>>>>>> Stashed changes
                                     },
                                 ),
                               ],

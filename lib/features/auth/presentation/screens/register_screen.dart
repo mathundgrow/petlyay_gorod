@@ -8,10 +8,13 @@ import 'package:walk_city/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:walk_city/features/auth/presentation/bloc/auth_event.dart';
 import 'package:walk_city/features/auth/presentation/bloc/auth_state.dart';
 import 'package:walk_city/features/auth/presentation/screens/avatar_screen.dart';
+import 'package:walk_city/features/auth/presentation/screens/login_screen.dart';
 import 'package:walk_city/features/auth/presentation/widgets/auth_title.dart';
 import 'package:walk_city/features/auth/presentation/widgets/buttons/social_buttons_row.dart';
 import 'package:walk_city/features/auth/presentation/widgets/custom_checkbox.dart';
 import 'package:walk_city/features/auth/presentation/widgets/or_divider.dart';
+import 'package:walk_city/features/auth/presentation/widgets/alert_dialog.dart';
+
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -255,6 +258,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 print("Нажали на соглашение");
+                                Navigator.push(
+                                  context, 
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginScreen()));
                                 // Тут будет переход: Navigator.push(...)
                               },
                           ),

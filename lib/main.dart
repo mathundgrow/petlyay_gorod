@@ -4,8 +4,9 @@ import 'package:pocketbase/pocketbase.dart';
 import 'package:walk_city/core/network/pb_client.dart';
 import 'package:walk_city/features/auth/data/repositories/auth_repository.dart';
 import 'package:walk_city/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:walk_city/features/auth/presentation/screens/login_screen.dart';
 import 'package:walk_city/features/home/presentation/screens/home_screen.dart';
+import 'package:walk_city/features/auth/presentation/screens/login_screen.dart';
+import 'package:walk_city/features/auth/presentation/screens/change_password_screen.dart';
 import 'package:walk_city/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:walk_city/features/onboarding/presentation/screens/on_boarding_screen2.dart';
 
@@ -73,9 +74,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData.light(),
       home: PbClient.instance.authStore.isValid
           ? const HomeScreen() // Если токен жив - на Главную
-          : OnBoardingScreen() // Иначе - логинимся
+          : ChangePasswordScreen() // Иначе - логинимся 
     );
   }
 }

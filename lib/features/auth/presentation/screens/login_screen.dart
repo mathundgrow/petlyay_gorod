@@ -8,10 +8,7 @@ import 'package:walk_city/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:walk_city/features/auth/presentation/bloc/auth_event.dart';
 import 'package:walk_city/features/auth/presentation/bloc/auth_state.dart';
 import 'package:walk_city/features/auth/presentation/screens/register_screen.dart';
-<<<<<<< Updated upstream
-=======
 import 'package:walk_city/features/auth/presentation/widgets/alert_dialog.dart';
->>>>>>> Stashed changes
 import 'package:walk_city/features/auth/presentation/widgets/auth_title.dart';
 import 'package:walk_city/features/auth/presentation/widgets/buttons/social_buttons_row.dart';
 import 'package:walk_city/features/auth/presentation/widgets/or_divider.dart';
@@ -217,25 +214,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   // Добавляем распознавание нажатия на текст:
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-<<<<<<< Updated upstream
-                                      Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const RegisterScreen(),
-                                        ),
-                                        (route) =>
-                                            false, // Очищаем историю, чтобы нельзя было вернуться назад
-                                      );
-                                      debugPrint("Переход на экран регистрации!");
-=======
                                       print("Переход на экран регистрации!");
                                       Navigator.push(
                                         context, 
                                         MaterialPageRoute(
                                           builder: ((context) => const RegisterScreen())));
                                       // Тут будет переход: Navigator.push(...)
->>>>>>> Stashed changes
                                     },
                                 ),
                               ],
